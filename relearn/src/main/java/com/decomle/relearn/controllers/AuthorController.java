@@ -64,4 +64,10 @@ public class AuthorController {
         AuthorEntity authorEntity = this.authorService.partialUpdate(id, this.authorMapper.mapFrom(authorDto));
         return new ResponseEntity<>(this.authorMapper.mapTo(authorEntity), HttpStatus.OK);
     }
+
+    @DeleteMapping(path = "/authors/{id}")
+    public ResponseEntity deleteAuthor(@PathVariable Long id) {
+        this.authorService.delete(id);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }

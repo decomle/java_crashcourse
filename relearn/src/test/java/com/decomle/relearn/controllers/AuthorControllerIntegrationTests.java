@@ -166,4 +166,16 @@ public class AuthorControllerIntegrationTests {
         );
     }
 
+    @Test void testIfDeleteAuthorSuccessfully() throws Exception {
+        AuthorEntity author = TestDataUtil.createTestAuthorEntityA();
+        author.setId(null);
+        author = this.authorService.save(author);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/authors/"+author.getId())
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(
+                MockMvcResultMatchers.status().isNoContent()
+        );
+    }
+
 }
