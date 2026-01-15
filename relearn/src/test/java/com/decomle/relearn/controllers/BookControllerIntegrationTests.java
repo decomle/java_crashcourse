@@ -105,4 +105,5 @@ public class BookControllerIntegrationTests {
                 MockMvcResultMatchers.jsonPath("$.title").value("The Shadow in the Attic Update")
         );
     }
+
 }

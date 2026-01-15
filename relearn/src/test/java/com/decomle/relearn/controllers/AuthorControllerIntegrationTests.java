@@ -109,6 +109,7 @@ public class AuthorControllerIntegrationTests {
         AuthorEntity savedAuthor = this.authorService.save(author);
 
         savedAuthor.setName("Abigail Rose Update");
+        savedAuthor.setAge(100);
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/authors/" + savedAuthor.getId())
                 .contentType(MediaType.APPLICATION_JSON)
@@ -117,6 +118,8 @@ public class AuthorControllerIntegrationTests {
                 MockMvcResultMatchers.status().isOk()
         ).andExpect(
                 MockMvcResultMatchers.jsonPath("$.name").value("Abigail Rose Update")
+        ).andExpect(
+                MockMvcResultMatchers.jsonPath("$.age").value(100)
         );
     }
 
@@ -132,4 +135,35 @@ public class AuthorControllerIntegrationTests {
                 MockMvcResultMatchers.status().isNotFound()
         );
     }
+
+    @Test
+    public void testIfPartialUpdateAuthorSuccessfully() throws Exception {
+        AuthorEntity author = TestDataUtil.createTestAuthorEntityA();
+        author.setId(null);
+        this.authorService.save(author);
+        author.setName("Abigail Rose Update");
+        author.setAge(null);
+
+        this.mockMvc.perform(MockMvcRequestBuilders.patch("/authors/" + author.getId())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(this.objectMapper.writeValueAsString(author))
+        ).andExpect(
+                MockMvcResultMatchers.status().isOk()
+        ).andExpect(
+                MockMvcResultMatchers.jsonPath("$.name").value("Abigail Rose Update")
+        ).andExpect(
+                MockMvcResultMatchers.jsonPath("$.age").value(80)
+        );
+    }
+    @Test
+    public void testIfPartialUpdateAuthorUnsuccessfully() throws Exception {
+        AuthorEntity author = TestDataUtil.createTestAuthorEntityA();
+        this.mockMvc.perform(MockMvcRequestBuilders.patch("/authors/12312")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(this.objectMapper.writeValueAsString(author))
+        ).andExpect(
+                MockMvcResultMatchers.status().isNotFound()
+        );
+    }
+
 }
