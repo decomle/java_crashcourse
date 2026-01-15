@@ -90,19 +90,19 @@ public class BookControllerIntegrationTests {
         );
     }
 
-//    @Test
-//    public void testIfFullUpdateBookSuccessfully() throws Exception {
-//        BookEntity book = TestDataUtil.createTestBookEntityA(null);
-//        this.bookService.save(book.getIsbn(), book);
-//        book.setTitle("The Shadow in the Attic Update");
-//
-//        mockMvc.perform(MockMvcRequestBuilders.put("/books/" + book.getIsbn() )
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(this.objectMapper.writeValueAsString(book))
-//        ).andExpect(
-//                MockMvcResultMatchers.status().isOk()
-//        ).andExpect(
-//                MockMvcResultMatchers.jsonPath("$.title").value("The Shadow in the Attic Update")
-//        );
-//    }
+    @Test
+    public void testIfFullUpdateBookSuccessfully() throws Exception {
+        BookEntity book = TestDataUtil.createTestBookEntityA(null);
+        this.bookService.save(book.getIsbn(), book);
+        book.setTitle("The Shadow in the Attic Update");
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/books/" + book.getIsbn() )
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(this.objectMapper.writeValueAsString(book))
+        ).andExpect(
+                MockMvcResultMatchers.status().isOk()
+        ).andExpect(
+                MockMvcResultMatchers.jsonPath("$.title").value("The Shadow in the Attic Update")
+        );
+    }
 }
