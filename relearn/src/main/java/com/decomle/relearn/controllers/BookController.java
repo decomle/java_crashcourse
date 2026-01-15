@@ -5,6 +5,8 @@ import com.decomle.relearn.domain.entities.AuthorEntity;
 import com.decomle.relearn.domain.entities.BookEntity;
 import com.decomle.relearn.mappers.Mapper;
 import com.decomle.relearn.services.BookService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,9 +41,9 @@ public class BookController {
     }
 
     @GetMapping(path = "/books")
-    public List<BookDto> getAllBooks() {
-        List<BookEntity> bookEntities = this.bookService.findAll();
-        return bookEntities.stream().map(this.mapper::mapTo).collect(Collectors.toList());
+    public Page<BookDto> getAllBooks(Pageable pageable) {
+        Page<BookEntity> books = this.bookService.findAll(pageable);
+        return books.map(this.mapper::mapTo);
     }
 
     @GetMapping(path = "/books/{isbn}")
