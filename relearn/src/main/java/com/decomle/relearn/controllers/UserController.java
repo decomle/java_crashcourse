@@ -5,10 +5,12 @@ import com.decomle.relearn.domain.entities.UserEntity;
 import com.decomle.relearn.mappers.Mapper;
 import com.decomle.relearn.mappers.impl.UserMapperImpl;
 import com.decomle.relearn.services.UserService;
+import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Log
 @RestController
 public class UserController {
     private UserService userService;
@@ -23,5 +25,10 @@ public class UserController {
     public UserDto createUser(@RequestBody UserDto userDto) {
         UserEntity user = this.userService.save(this.mapper.mapFrom(userDto));
         return this.mapper.mapTo(user);
+    }
+
+    @PostMapping(path = "/login")
+    public String login(@RequestBody UserDto userDto) {
+        return this.userService.verify(this.mapper.mapFrom(userDto));
     }
 }
