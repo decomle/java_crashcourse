@@ -30,6 +30,7 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests(request -> request
                 .requestMatchers("/register", "/login", "/s/login" , "/hello").permitAll()
                 .anyRequest().authenticated());
+//        httpSecurity.formLogin(Customizer.withDefaults());
         httpSecurity.httpBasic(Customizer.withDefaults());
 
         return httpSecurity.build();

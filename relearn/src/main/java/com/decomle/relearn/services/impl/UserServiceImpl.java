@@ -14,11 +14,13 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private BCryptPasswordEncoder encoder;
     private AuthenticationManager authenticationManager;
+    private JWTService jwtService;
 
-    public UserServiceImpl(UserRepository userRepository, AuthenticationManager authenticationManager) {
+    public UserServiceImpl(UserRepository userRepository, AuthenticationManager authenticationManager, JWTService jwtService) {
         this.encoder = new BCryptPasswordEncoder(10);
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
     }
 
     @Override
@@ -33,6 +35,6 @@ public class UserServiceImpl implements UserService {
                 new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword())
         );
 
-        return authentication.isAuthenticated() ? "success" : "fail";
+        return authentication.isAuthenticated() ? this.jwtService.generateToken(user.getUsername()) : "fail";
     }
 }
