@@ -1,4 +1,4 @@
-package com.decomle.relearn.filter;
+package com.decomle.relearn.security.filter;
 
 import com.decomle.relearn.services.impl.JWTService;
 import jakarta.servlet.FilterChain;
