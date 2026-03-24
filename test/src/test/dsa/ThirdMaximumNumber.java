@@ -1,6 +1,6 @@
 package test.dsa;
 
-public class ThirdMaximunNumber {
+public class ThirdMaximumNumber {
     public static int thirdMaxNum(int[] nums) {
         Integer first = nums[0], second = null, third = null;
         for(int num: nums) {

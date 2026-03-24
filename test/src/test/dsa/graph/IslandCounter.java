@@ -1,4 +1,4 @@
-package test.dsa;
+package test.dsa.graph;
 
 class IslandCounter {
 
