@@ -2,17 +2,6 @@ package test.dsa.linkedlist;
 
 
 public class RemoveDuplicatedSortedList {
-    public static  class ListNode {
-        int val;
-        ListNode next;
-        public ListNode(int value) {
-            this.val = value;
-        }
-        public ListNode(int value, ListNode next) {
-            this.val = value;
-            this.next = next;
-        }
-    }
 
     public static ListNode removeDuplicate(ListNode head) {
         ListNode cur = head;

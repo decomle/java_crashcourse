@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-// One type of DFS (Depth-First Search)
+// One type of DFS (Depth-First Search): With LEFT -> ROOT -> RIGHT
 // Problem that it solve: validate BST
 public class InOrderTransverse {
     public static List<Integer> inorderTransverse(TreeNode root) {

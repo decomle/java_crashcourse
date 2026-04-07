@@ -27,6 +27,8 @@ public class FindDuplicateNum {
         do {
             slow = nums[slow];
             fast = nums[nums[fast]];
+
+            System.out.println(slow + " | " + fast);
         } while (slow != fast);
 
         slow = 0;
@@ -39,21 +41,7 @@ public class FindDuplicateNum {
     }
 
     public static void main(String[] args) {
-        int[] valid = {3,1,3,4,2};
+        int[] valid = {1, 2, 3, 4, 2, 2};
         System.out.println(findDuplicate(valid));
-
-        try {
-            int[] invalid = {1, 2, 5};
-            System.out.println(findDuplicate(invalid));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.toString());
-        }
-
-        try {
-            int[] noDuplicate = {1, 2, 3, 4};
-            System.out.println(findDuplicate(noDuplicate));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.toString());
-        }
     }
 }

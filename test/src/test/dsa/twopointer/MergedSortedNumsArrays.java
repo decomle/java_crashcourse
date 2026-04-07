@@ -1,5 +1,7 @@
 package test.dsa.twopointer;
 
+import java.util.Arrays;
+
 public class MergedSortedNumsArrays {
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
         int i = m - 1, j = n - 1;
@@ -39,14 +41,12 @@ public class MergedSortedNumsArrays {
 
 
     public static void main(String[] args) {
-        int[] nums1 = {1,2,3,0,0,0, 0}, nums2 = {2, 5, 6, 9};
+        int[] nums1 = {1,2,3,0,0,0,0}, nums2 = {2, 5, 6, 9};
         int m = 3, n = 4;
 
         merge(nums1, m, nums2, n);
 
-        for(int num: nums1) {
-            System.out.print(num + " ");
-        }
+        System.out.println(Arrays.toString(nums1));
 
     }
 }

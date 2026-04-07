@@ -1,21 +1,6 @@
 package test.dsa.linkedlist;
 
-public class ReverveLinkedList {
-    public static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) {
-            this.val = x;
-        }
-    }
-
-    public static void printListNode(ListNode node) {
-        while(node != null) {
-            System.out.println(node.val);
-            node = node.next;
-        }
-    }
-
+public class ReverseLinkedList {
     public static ListNode reverseLinkedList(ListNode head) {
         ListNode current = head, prev = null, next = null;
 
@@ -43,8 +28,8 @@ public class ReverveLinkedList {
         node4.next = node5;
         node5.next = node6;
 
-        printListNode(head);
+        ListNode.printListNode(head);
         System.out.println("----------------");
-        printListNode(reverseLinkedList(head));
+        ListNode.printListNode(reverseLinkedList(head));
     }
 }
